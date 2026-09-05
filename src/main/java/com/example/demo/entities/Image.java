@@ -15,6 +15,7 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     @Lob
     @Column(name = "bytes", columnDefinition="mediumblob")
     private byte[] bytes;
