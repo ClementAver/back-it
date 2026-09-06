@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface BoardInterface {
     BoardResponse createBoard(BoardRequest boardRequest);
-    List<BoardResponse> getBoards();
-    BoardResponse getBoard(Integer id) throws NotFoundException;
+    BoardResponse readBoard(Integer id) throws NotFoundException;
     BoardResponse updateBoard(Integer id, BoardRequest boardRequest) throws NotFoundException;
     Integer deleteBoard(Integer id) throws NotFoundException;
+    List<BoardResponse> readBoards();
 }

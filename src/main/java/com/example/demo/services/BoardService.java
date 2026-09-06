@@ -39,12 +39,7 @@ public class BoardService implements BoardInterface{
     }
 
     @Override
-    public List<BoardResponse> getBoards() {
-        return boardRepository.findAll().stream().map(boardDTOMapper).toList();
-    }
-
-    @Override
-    public BoardResponse getBoard(Integer id) throws NotFoundException {
+    public BoardResponse readBoard(Integer id) throws NotFoundException {
         Optional<Board> boardInDB = boardRepository.findById(id);
         if(boardInDB.isPresent()) {
             Board board = boardInDB.get();
@@ -89,5 +84,10 @@ public class BoardService implements BoardInterface{
         } else {
             throw new NotFoundException("Tableau non référencé.");
         }
+    }
+
+    @Override
+    public List<BoardResponse> readBoards() {
+        return boardRepository.findAll().stream().map(boardDTOMapper).toList();
     }
 }

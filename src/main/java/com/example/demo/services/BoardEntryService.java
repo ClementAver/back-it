@@ -57,6 +57,24 @@ public class BoardEntryService implements BoardEntryInterface {
     }
 
     @Override
+    public BoardEntryResponse readBoardEntry(Integer id) throws NotFoundException {
+        Optional<BoardEntry> boardEntryInDB = boardEntryRepository.findById(id);
+        if(boardEntryInDB.isPresent()) {
+            BoardEntry boardEntry = boardEntryInDB.get();
+            return new BoardEntryResponse(
+                    boardEntry.getId(),
+                    boardEntry.getOrder(),
+                    boardEntry.getBoard_id().getId(),
+                    boardEntry.getImage_id().getId(),
+                    boardEntry.getCreatedAt(),
+                    boardEntry.getUpdatedAt()
+            );
+        } else {
+            throw new NotFoundException("Tableau non référencé.");
+        }
+    }
+
+    @Override
     public BoardEntryResponse updateBoardEntry(Integer id, BoardEntryRequest boardEntryRequest) throws NotFoundException {
         Optional<BoardEntry> boardEntryInDB = boardEntryRepository.findById(id);
         if (boardEntryInDB.isPresent()) {
@@ -74,6 +92,17 @@ public class BoardEntryService implements BoardEntryInterface {
                     boardEntry.getCreatedAt(),
                     boardEntry.getUpdatedAt()
             );
+        } else {
+            throw new NotFoundException("Entrée non référencée.");
+        }
+    }
+
+    @Override
+    public Integer deleteBoardEntry(Integer id) throws NotFoundException {
+        Optional<BoardEntry> boardEntryInDB = boardEntryRepository.findById(id);
+        if (boardEntryInDB.isPresent()) {
+            boardEntryRepository.deleteById(id);
+            return id;
         } else {
             throw new NotFoundException("Entrée non référencée.");
         }

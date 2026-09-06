@@ -1,7 +1,10 @@
 package com.example.demo.services;
 
+import com.example.demo.dtos.ImageRequest;
+import com.example.demo.entities.Board;
 import com.example.demo.entities.Image;
 import com.example.demo.exceptions.FormatNotSupportedException;
+import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repositories.ImageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +24,7 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public String uploadImage(MultipartFile file) throws IOException, FormatNotSupportedException {
+    public Integer createImage(MultipartFile file) throws IOException, FormatNotSupportedException {
         String imageFileName = file.getOriginalFilename();
         assert imageFileName != null;
         String extension = imageFileName.substring(imageFileName.lastIndexOf(".") + 1);
@@ -30,25 +33,67 @@ public class ImageService implements ImageInterface {
         }
         Optional<Image> imageOptional = imageRepository.findByName(imageFileName);
         if (imageOptional.isEmpty()) {
-            imageRepository.save(Image.builder()
+            Image image = Image.builder()
                     .name(imageFileName)
                     .type(file.getContentType())
                     .bytes(file.getBytes())
-                    .build());
+                    .build();
+            imageRepository.save(image);
+            return image.getId();
         } else {
             throw new FileAlreadyExistsException("Une image porte déjà ce nom.");
         }
-        return imageFileName;
     }
 
     @Override
-    public byte[] getImage(String name) throws FileNotFoundException {
+    public byte[] readImage(Integer id) throws NotFoundException {
+        Optional<Image> imageInDB = imageRepository.findById(id);
+        byte[] imageBytes;
+        if (imageInDB.isPresent()) {
+            imageBytes = imageInDB.get().getBytes();
+        } else {
+            throw new NotFoundException("Image non référencée.");
+        }
+        return imageBytes;
+    }
+
+    @Override
+    public Integer updateImage(Integer id, ImageRequest imageRequest) throws NotFoundException {
+        Optional<Image> imageInDB = imageRepository.findById(id);
+        if (imageInDB.isPresent()) {
+            Image image = imageInDB.get();
+            if (imageRequest.getAlternate_text() != null) {
+                image.setAlternate_text(imageRequest.getAlternate_text());
+            }
+            if (imageRequest.getCaption() != null) {
+                image.setCaption(imageRequest.getCaption());
+            }
+            imageRepository.save(image);
+            return image.getId();
+        } else {
+            throw new NotFoundException("Image non référencée.");
+        }
+    }
+
+    @Override
+    public Integer deleteImage(Integer id)throws NotFoundException {
+        Optional<Image> imageInDB = imageRepository.findById(id);
+        if (imageInDB.isPresent()) {
+            imageRepository.deleteById(id);
+            return id;
+        } else {
+            throw new NotFoundException("Image non référencée.");
+        }
+    }
+
+    @Override
+    public byte[] readImageByName(String name) throws NotFoundException {
         Optional<Image> imageInDB = imageRepository.findByName(name);
         byte[] imageBytes;
         if (imageInDB.isPresent()) {
             imageBytes = imageInDB.get().getBytes();
         } else {
-            throw new FileNotFoundException("Image non référencée : " + name);
+            throw new NotFoundException("Image non référencée : " + name);
         }
         return imageBytes;
     }
