@@ -10,7 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardEntryRequest {
-    private Integer order;
+    private String caption;
+    private Integer position;
     private Integer board_id;
     private Integer image_id;
 }

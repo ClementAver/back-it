@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImageRequest {
+    private String name;
     private String alternate_text;
-    private String caption;
 }

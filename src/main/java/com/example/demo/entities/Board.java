@@ -2,7 +2,10 @@ package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "board")
@@ -16,8 +19,10 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
-    @Column(name = "created_at")
-    private LocalDate createdAt;
-    @Column(name = "updated_at")
-    private LocalDate updatedAt;
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 }

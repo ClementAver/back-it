@@ -11,7 +11,8 @@ public class BoardEntryDTOMapper implements Function<BoardEntry, BoardEntryRespo
     public BoardEntryResponse apply(BoardEntry board_entry) {
         return new BoardEntryResponse(
                 board_entry.getId(),
-                board_entry.getOrder(),
+                board_entry.getCaption(),
+                board_entry.getPosition(),
                 board_entry.getBoard_id().getId(),
                 board_entry.getImage_id().getId(),
                 board_entry.getCreatedAt(),

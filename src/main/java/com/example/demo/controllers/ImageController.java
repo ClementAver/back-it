@@ -1,7 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.dtos.BoardEntryRequest;
-import com.example.demo.dtos.BoardEntryResponse;
 import com.example.demo.dtos.ImageRequest;
 import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
@@ -16,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @RestController
@@ -29,13 +26,14 @@ public class ImageController {
         this.imageService = imageService;
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/image")
-    public Integer createImage(@RequestParam("name")MultipartFile file) throws IOException, FormatNotSupportedException {
-        return imageService.createImage(file);
+    public Integer createImage(MultipartFile file, String alternate_text) throws IOException, FormatNotSupportedException {
+        return imageService.createImage(file, alternate_text);
     }
 
     @GetMapping(path = {"/image/{id}"})
-    public ResponseEntity<byte[]> readImage(@PathVariable("id") Integer id) throws NotFoundException {
+    public ResponseEntity<byte[]> readImage(@PathVariable Integer id) throws NotFoundException {
         HttpHeaders headers = new HttpHeaders();
         byte[] imageData = imageService.readImage(id);
         return new ResponseEntity<>(imageData, headers, HttpStatus.OK);

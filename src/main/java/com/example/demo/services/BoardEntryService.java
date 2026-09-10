@@ -11,7 +11,6 @@ import com.example.demo.repositories.BoardRepository;
 import com.example.demo.repositories.ImageRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -42,13 +41,13 @@ public class BoardEntryService implements BoardEntryInterface {
         } else {
             throw new NotFoundException("Image non référencée.");
         }
-        boardEntry.setOrder(boardEntryRequest.getOrder());
-        boardEntry.setCreatedAt(LocalDate.now());
-        boardEntry.setUpdatedAt(LocalDate.now());
+        boardEntry.setCaption(boardEntryRequest.getCaption());
+        boardEntry.setPosition(boardEntryRequest.getPosition());
         boardEntryRepository.save(boardEntry);
         return new BoardEntryResponse(
           boardEntry.getId(),
-          boardEntry.getOrder(),
+          boardEntry.getCaption(),
+          boardEntry.getPosition(),
           boardEntry.getBoard_id().getId(),
           boardEntry.getImage_id().getId(),
           boardEntry.getCreatedAt(),
@@ -63,7 +62,8 @@ public class BoardEntryService implements BoardEntryInterface {
             BoardEntry boardEntry = boardEntryInDB.get();
             return new BoardEntryResponse(
                     boardEntry.getId(),
-                    boardEntry.getOrder(),
+                    boardEntry.getCaption(),
+                    boardEntry.getPosition(),
                     boardEntry.getBoard_id().getId(),
                     boardEntry.getImage_id().getId(),
                     boardEntry.getCreatedAt(),
@@ -79,14 +79,17 @@ public class BoardEntryService implements BoardEntryInterface {
         Optional<BoardEntry> boardEntryInDB = boardEntryRepository.findById(id);
         if (boardEntryInDB.isPresent()) {
             BoardEntry boardEntry = boardEntryInDB.get();
-            if (boardEntryRequest.getOrder() != null) {
-                boardEntry.setOrder(boardEntryRequest.getOrder());
+            if (boardEntryRequest.getCaption() != null) {
+                boardEntry.setCaption(boardEntryRequest.getCaption());
             }
-            boardEntry.setUpdatedAt(LocalDate.now());
+            if (boardEntryRequest.getPosition() != null) {
+                boardEntry.setPosition(boardEntryRequest.getPosition());
+            }
             boardEntryRepository.save(boardEntry);
             return new BoardEntryResponse(
                     boardEntry.getId(),
-                    boardEntry.getOrder(),
+                    boardEntry.getCaption(),
+                    boardEntry.getPosition(),
                     boardEntry.getBoard_id().getId(),
                     boardEntry.getImage_id().getId(),
                     boardEntry.getCreatedAt(),

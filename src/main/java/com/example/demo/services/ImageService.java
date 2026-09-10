@@ -1,7 +1,6 @@
 package com.example.demo.services;
 
 import com.example.demo.dtos.ImageRequest;
-import com.example.demo.entities.Board;
 import com.example.demo.entities.Image;
 import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
@@ -9,7 +8,6 @@ import com.example.demo.repositories.ImageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.Optional;
@@ -24,7 +22,7 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public Integer createImage(MultipartFile file) throws IOException, FormatNotSupportedException {
+    public Integer createImage(MultipartFile file, String alternate_text) throws IOException, FormatNotSupportedException {
         String imageFileName = file.getOriginalFilename();
         assert imageFileName != null;
         String extension = imageFileName.substring(imageFileName.lastIndexOf(".") + 1);
@@ -35,8 +33,9 @@ public class ImageService implements ImageInterface {
         if (imageOptional.isEmpty()) {
             Image image = Image.builder()
                     .name(imageFileName)
-                    .type(file.getContentType())
                     .bytes(file.getBytes())
+                    .type(file.getContentType())
+                    .alternate_text(alternate_text)
                     .build();
             imageRepository.save(image);
             return image.getId();
@@ -64,9 +63,6 @@ public class ImageService implements ImageInterface {
             Image image = imageInDB.get();
             if (imageRequest.getAlternate_text() != null) {
                 image.setAlternate_text(imageRequest.getAlternate_text());
-            }
-            if (imageRequest.getCaption() != null) {
-                image.setCaption(imageRequest.getCaption());
             }
             imageRepository.save(image);
             return image.getId();

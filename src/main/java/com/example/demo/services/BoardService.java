@@ -8,7 +8,6 @@ import com.example.demo.mappers.BoardDTOMapper;
 import com.example.demo.repositories.BoardRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +26,6 @@ public class BoardService implements BoardInterface{
     public BoardResponse createBoard(BoardRequest boardRequest) {
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
-        board.setCreatedAt(LocalDate.now());
-        board.setUpdatedAt(LocalDate.now());
         boardRepository.save(board);
         return new BoardResponse(
                 board.getId(),
@@ -62,7 +59,6 @@ public class BoardService implements BoardInterface{
             if (boardRequest.getTitle() != null) {
                 board.setTitle(boardRequest.getTitle());
             }
-            board.setUpdatedAt(LocalDate.now());
             boardRepository.save(board);
             return new BoardResponse(
                     board.getId(),
