@@ -40,12 +40,12 @@ public class ImageController {
     }
 
     @PutMapping(value = "/image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Integer updateBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") int id, @Valid @ModelAttribute ImageRequest imageRequest) throws NotFoundException {
+    public Integer updateImage(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id, @Valid @ModelAttribute ImageRequest imageRequest) throws NotFoundException {
         return imageService.updateImage(id, imageRequest);
     }
 
-    @DeleteMapping("/image")
-    public Integer deleteImage(Integer id) throws NotFoundException {
+    @DeleteMapping("/image/{id}")
+    public Integer deleteImage(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
         return imageService.deleteImage(id);
     }
 

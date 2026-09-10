@@ -33,17 +33,17 @@ public class BoardEntryController {
     }
 
     @GetMapping("/board_entry/{id}")
-    public BoardEntryResponse readBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") int id) throws NotFoundException {
+    public BoardEntryResponse readBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
         return boardEntryService.readBoardEntry(id);
     }
 
     @PutMapping(value = "/board_entry/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public BoardEntryResponse updateBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") int id, @Valid @ModelAttribute BoardEntryRequest boardEntryRequest) throws NotFoundException {
+    public BoardEntryResponse updateBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id, @Valid @ModelAttribute BoardEntryRequest boardEntryRequest) throws NotFoundException {
         return boardEntryService.updateBoardEntry(id, boardEntryRequest);
     }
 
-    @DeleteMapping("/board_entry")
-    public Integer deleteBoard(Integer id) throws NotFoundException {
+    @DeleteMapping("/board_entry/{id}")
+    public Integer deleteBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
         return boardEntryService.deleteBoardEntry(id);
     }
 }
