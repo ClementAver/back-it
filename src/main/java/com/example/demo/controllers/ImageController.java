@@ -28,8 +28,8 @@ public class ImageController {
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/image")
-    public Integer createImage(MultipartFile file, String alternate_text) throws IOException, FormatNotSupportedException {
-        return imageService.createImage(file, alternate_text);
+    public Integer createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException {
+        return imageService.createImage(file, alternateText);
     }
 
     @GetMapping(path = {"/image/{id}"})

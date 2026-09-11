@@ -22,7 +22,7 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public Integer createImage(MultipartFile file, String alternate_text) throws IOException, FormatNotSupportedException {
+    public Integer createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException {
         String imageFileName = file.getOriginalFilename();
         assert imageFileName != null;
         String extension = imageFileName.substring(imageFileName.lastIndexOf(".") + 1);
@@ -35,7 +35,7 @@ public class ImageService implements ImageInterface {
                     .name(imageFileName)
                     .bytes(file.getBytes())
                     .type(file.getContentType())
-                    .alternate_text(alternate_text)
+                    .alternateText(alternateText)
                     .build();
             imageRepository.save(image);
             return image.getId();
@@ -61,8 +61,8 @@ public class ImageService implements ImageInterface {
         Optional<Image> imageInDB = imageRepository.findById(id);
         if (imageInDB.isPresent()) {
             Image image = imageInDB.get();
-            if (imageRequest.getAlternate_text() != null) {
-                image.setAlternate_text(imageRequest.getAlternate_text());
+            if (imageRequest.getAlternateText() != null) {
+                image.setAlternateText(imageRequest.getAlternateText());
             }
             imageRepository.save(image);
             return image.getId();

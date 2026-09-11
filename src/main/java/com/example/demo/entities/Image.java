@@ -24,7 +24,8 @@ public class Image {
     @Column(name = "bytes", columnDefinition="mediumblob")
     private byte[] bytes;
     private String type;
-    private String alternate_text;
+    @Column(name = "alternate_text")
+    private String alternateText;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

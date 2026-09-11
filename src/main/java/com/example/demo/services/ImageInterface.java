@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 public interface ImageInterface {
-    Integer createImage(MultipartFile file, String alternate_text) throws IOException, FormatNotSupportedException;
+    Integer createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException;
     byte[] readImage(Integer id) throws NotFoundException;
     Integer updateImage(Integer id, ImageRequest imageRequest) throws NotFoundException;
     Integer deleteImage(Integer id) throws NotFoundException;

@@ -12,6 +12,6 @@ import lombok.Setter;
 public class BoardEntryRequest {
     private String caption;
     private Integer position;
-    private Integer board_id;
-    private Integer image_id;
+    private Integer boardId;
+    private Integer imageId;
 }

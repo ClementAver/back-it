@@ -2,8 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.dtos.BoardRequest;
 import com.example.demo.dtos.BoardResponse;
-import com.example.demo.exceptions.AlreadyExistException;
-import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.services.BoardService;
 import jakarta.validation.Valid;
@@ -12,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +40,7 @@ public class BoardController {
         return boardService.updateBoard(id, boardRequest);
     }
 
-    @DeleteMapping("/board")
+    @DeleteMapping("/board/{id}")
     public Integer deleteBoard(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
         return boardService.deleteBoard(id);
     }

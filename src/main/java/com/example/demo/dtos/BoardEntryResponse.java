@@ -15,8 +15,8 @@ public class BoardEntryResponse {
     private Integer id;
     private String caption;
     private Integer position;
-    private Integer board_id;
-    private Integer image_id;
+    private Integer boardId;
+    private Integer imageId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

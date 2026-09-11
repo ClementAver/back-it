@@ -6,11 +6,13 @@ import com.example.demo.entities.Board;
 import com.example.demo.entities.BoardEntry;
 import com.example.demo.entities.Image;
 import com.example.demo.exceptions.NotFoundException;
+import com.example.demo.mappers.BoardEntryDTOMapper;
 import com.example.demo.repositories.BoardEntryRepository;
 import com.example.demo.repositories.BoardRepository;
 import com.example.demo.repositories.ImageRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,25 +21,27 @@ public class BoardEntryService implements BoardEntryInterface {
     private final BoardEntryRepository boardEntryRepository;
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
+    private final BoardEntryDTOMapper boardEntryDTOMapper;
 
-    public BoardEntryService(BoardEntryRepository boardEntryRepository, BoardRepository boardRepository, ImageRepository imageRepository) {
+    public BoardEntryService(BoardEntryRepository boardEntryRepository, BoardRepository boardRepository, ImageRepository imageRepository, BoardEntryDTOMapper boardEntryDTOMapper) {
         this.boardEntryRepository = boardEntryRepository;
         this.boardRepository = boardRepository;
         this.imageRepository = imageRepository;
+        this.boardEntryDTOMapper = boardEntryDTOMapper;
     }
 
     @Override
     public BoardEntryResponse createBoardEntry(BoardEntryRequest boardEntryRequest) throws NotFoundException {
         BoardEntry boardEntry = new BoardEntry();
-        Optional<Board> boardInDB = boardRepository.findById(boardEntryRequest.getBoard_id());
+        Optional<Board> boardInDB = boardRepository.findById(boardEntryRequest.getBoardId());
         if (boardInDB.isPresent()) {
-            boardEntry.setBoard_id(boardInDB.get());
+            boardEntry.setBoardId(boardInDB.get());
         } else {
             throw new NotFoundException("Tableau non référencé.");
         }
-        Optional<Image> imageInDB = imageRepository.findById(boardEntryRequest.getImage_id());
+        Optional<Image> imageInDB = imageRepository.findById(boardEntryRequest.getImageId());
         if (imageInDB.isPresent()) {
-            boardEntry.setImage_id(imageInDB.get());
+            boardEntry.setImageId(imageInDB.get());
         } else {
             throw new NotFoundException("Image non référencée.");
         }
@@ -48,8 +52,8 @@ public class BoardEntryService implements BoardEntryInterface {
           boardEntry.getId(),
           boardEntry.getCaption(),
           boardEntry.getPosition(),
-          boardEntry.getBoard_id().getId(),
-          boardEntry.getImage_id().getId(),
+          boardEntry.getBoardId().getId(),
+          boardEntry.getImageId().getId(),
           boardEntry.getCreatedAt(),
           boardEntry.getUpdatedAt()
         );
@@ -64,8 +68,8 @@ public class BoardEntryService implements BoardEntryInterface {
                     boardEntry.getId(),
                     boardEntry.getCaption(),
                     boardEntry.getPosition(),
-                    boardEntry.getBoard_id().getId(),
-                    boardEntry.getImage_id().getId(),
+                    boardEntry.getBoardId().getId(),
+                    boardEntry.getImageId().getId(),
                     boardEntry.getCreatedAt(),
                     boardEntry.getUpdatedAt()
             );
@@ -90,8 +94,8 @@ public class BoardEntryService implements BoardEntryInterface {
                     boardEntry.getId(),
                     boardEntry.getCaption(),
                     boardEntry.getPosition(),
-                    boardEntry.getBoard_id().getId(),
-                    boardEntry.getImage_id().getId(),
+                    boardEntry.getBoardId().getId(),
+                    boardEntry.getImageId().getId(),
                     boardEntry.getCreatedAt(),
                     boardEntry.getUpdatedAt()
             );
@@ -109,6 +113,11 @@ public class BoardEntryService implements BoardEntryInterface {
         } else {
             throw new NotFoundException("Entrée non référencée.");
         }
+    }
+
+    @Override
+    public List<BoardEntryResponse> readBoardEntries(Integer id) {
+        return boardEntryRepository.findAllByBoardId_Id(id).stream().map(boardEntryDTOMapper).toList();
     }
 }
 

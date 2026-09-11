@@ -13,8 +13,8 @@ public class BoardEntryDTOMapper implements Function<BoardEntry, BoardEntryRespo
                 board_entry.getId(),
                 board_entry.getCaption(),
                 board_entry.getPosition(),
-                board_entry.getBoard_id().getId(),
-                board_entry.getImage_id().getId(),
+                board_entry.getBoardId().getId(),
+                board_entry.getImageId().getId(),
                 board_entry.getCreatedAt(),
                 board_entry.getUpdatedAt());
     }
