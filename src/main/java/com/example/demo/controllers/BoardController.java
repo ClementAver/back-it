@@ -44,7 +44,7 @@ public class BoardController {
     public Integer deleteBoard(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
         return boardService.deleteBoard(id);
     }
-
+    
     @GetMapping("/boards")
     public Map<String, List<BoardResponse>> readBoards() {
         List<BoardResponse> boardList = boardService.readBoards();

@@ -18,9 +18,10 @@ public class SecurityConfiguration {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         // Prevent cross-site request forgery.
-        http.csrf(AbstractHttpConfigurer::disable);
+        http.csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
         return http.build();
     }
 
@@ -28,7 +29,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of("http://127.0.0.1:5500"));
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
 
