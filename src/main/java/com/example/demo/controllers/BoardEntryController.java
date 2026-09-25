@@ -50,7 +50,7 @@ public class BoardEntryController {
     public Map<String, List<BoardEntryResponse>> readBoardEntries(@PathParam("board_id") @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer boardId) {
         List<BoardEntryResponse> boardEntryList = boardEntryService.readBoardEntries(boardId);
         Map<String, List<BoardEntryResponse>> response = new HashMap<>();
-        response.put("board_entries", boardEntryList);
+        response.put("boardEntries", boardEntryList);
         return response;
     }
 }
