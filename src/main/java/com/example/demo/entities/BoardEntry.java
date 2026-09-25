@@ -19,12 +19,13 @@ public class BoardEntry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String caption;
+    @Column(nullable = false)
     private Integer position;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "board_id", nullable = false)
     private Board boardId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "image_id")
+    @JoinColumn(name = "image_id", nullable = false)
     private Image imageId;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

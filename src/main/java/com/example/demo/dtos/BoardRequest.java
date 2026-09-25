@@ -13,4 +13,5 @@ import lombok.Setter;
 public class BoardRequest {
     @Size(max = 255, message = "Le titre ne doit pas dépasser 255 caractères.")
     private String title;
+    private Integer position;
 }

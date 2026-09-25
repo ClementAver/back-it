@@ -26,10 +26,12 @@ public class BoardService implements BoardInterface{
     public BoardResponse createBoard(BoardRequest boardRequest) {
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
+        board.setPosition(boardRequest.getPosition());
         boardRepository.save(board);
         return new BoardResponse(
                 board.getId(),
                 board.getTitle(),
+                board.getPosition(),
                 board.getCreatedAt(),
                 board.getUpdatedAt()
         );
@@ -43,6 +45,7 @@ public class BoardService implements BoardInterface{
             return new BoardResponse(
                     board.getId(),
                     board.getTitle(),
+                    board.getPosition(),
                     board.getCreatedAt(),
                     board.getUpdatedAt()
             );
@@ -63,6 +66,7 @@ public class BoardService implements BoardInterface{
             return new BoardResponse(
                     board.getId(),
                     board.getTitle(),
+                    board.getPosition(),
                     board.getCreatedAt(),
                     board.getUpdatedAt()
             );

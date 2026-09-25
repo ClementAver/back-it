@@ -18,11 +18,13 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name", unique = true )
+
+    @Column(name = "name", unique = true, nullable = false )
     private String name;
     @Lob
-    @Column(name = "bytes", columnDefinition="mediumblob")
+    @Column(name = "bytes", columnDefinition="mediumblob", nullable = false)
     private byte[] bytes;
+    @Column(nullable = false)
     private String type;
     @Column(name = "alternate_text")
     private String alternateText;

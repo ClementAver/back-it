@@ -45,7 +45,7 @@ public class BoardController {
         return boardService.deleteBoard(id);
     }
     
-    @GetMapping("/boards")
+    @GetMapping("/board")
     public Map<String, List<BoardResponse>> readBoards() {
         List<BoardResponse> boardList = boardService.readBoards();
         Map<String, List<BoardResponse>> response = new HashMap<>();
