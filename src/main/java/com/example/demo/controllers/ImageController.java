@@ -1,13 +1,13 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dtos.ImageRequest;
+import com.example.demo.dtos.ImageResponse;
 import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.services.ImageService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.websocket.server.PathParam;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,10 +33,8 @@ public class ImageController {
     }
 
     @GetMapping(path = {"/image/{id}"})
-    public ResponseEntity<byte[]> readImage(@PathVariable Integer id) throws NotFoundException {
-        HttpHeaders headers = new HttpHeaders();
-        byte[] imageData = imageService.readImage(id);
-        return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
+    public ImageResponse readImage(@PathVariable Integer id) throws NotFoundException {
+        return imageService.readImage(id);
     }
 
     @PutMapping(value = "/image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -50,10 +48,13 @@ public class ImageController {
     }
 
     @GetMapping(path = {"/image"}, params = {"name"})
-    public ResponseEntity<byte[]> readImageByName(@PathParam("name") String name) throws NotFoundException {
-        HttpHeaders headers = new HttpHeaders();
+    public ImageResponse readImageByName(@PathParam("name") String name) throws NotFoundException {
+        return imageService.readImageByName(name);
+    }
 
-        byte[] imageData = imageService.readImageByName(name);
-        return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
+    @GetMapping(path = {"/image/bytes/{id}"})
+    public ResponseEntity<byte[]> readImageBytes(@PathVariable Integer id) throws NotFoundException {
+        byte[] imageData = imageService.readImageBytes(id);
+        return new ResponseEntity<>(imageData, HttpStatus.OK);
     }
 }

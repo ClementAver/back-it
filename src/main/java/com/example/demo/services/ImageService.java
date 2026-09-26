@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dtos.ImageRequest;
+import com.example.demo.dtos.ImageResponse;
 import com.example.demo.entities.Image;
 import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
@@ -45,15 +46,22 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public byte[] readImage(Integer id) throws NotFoundException {
+    public ImageResponse readImage(Integer id) throws NotFoundException {
         Optional<Image> imageInDB = imageRepository.findById(id);
-        byte[] imageBytes;
         if (imageInDB.isPresent()) {
-            imageBytes = imageInDB.get().getBytes();
+            Image image = imageInDB.get();
+            return new ImageResponse(
+                    image.getId(),
+                    image.getName(),
+                    image.getBytes(),
+                    image.getType(),
+                    image.getAlternateText(),
+                    image.getCreatedAt(),
+                    image.getUpdatedAt()
+            );
         } else {
             throw new NotFoundException("Image non référencée.");
         }
-        return imageBytes;
     }
 
     @Override
@@ -83,13 +91,32 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public byte[] readImageByName(String name) throws NotFoundException {
+    public ImageResponse readImageByName(String name) throws NotFoundException {
         Optional<Image> imageInDB = imageRepository.findByName(name);
+        if (imageInDB.isPresent()) {
+            Image image = imageInDB.get();
+            return new ImageResponse(
+                    image.getId(),
+                    image.getName(),
+                    image.getBytes(),
+                    image.getType(),
+                    image.getAlternateText(),
+                    image.getCreatedAt(),
+                    image.getUpdatedAt()
+            );
+        } else {
+            throw new NotFoundException("Image non référencée.");
+        }
+    }
+
+    @Override
+    public byte[] readImageBytes(Integer id) throws NotFoundException {
+        Optional<Image> imageInDB = imageRepository.findById(id);
         byte[] imageBytes;
         if (imageInDB.isPresent()) {
             imageBytes = imageInDB.get().getBytes();
         } else {
-            throw new NotFoundException("Image non référencée : " + name);
+            throw new NotFoundException("Image non référencée.");
         }
         return imageBytes;
     }
