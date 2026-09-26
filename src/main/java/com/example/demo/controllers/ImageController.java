@@ -7,7 +7,6 @@ import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.services.ImageService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +32,10 @@ public class ImageController {
     }
 
     @GetMapping(path = {"/image/{id}"})
-    public ImageResponse readImage(@PathVariable Integer id) throws NotFoundException {
-        return imageService.readImage(id);
+    public ImageResponse readImage(
+            @PathVariable Integer id,
+            @RequestParam(name = "bytes", defaultValue = "false") boolean bytes) throws NotFoundException {
+        return imageService.readImage(id, bytes);
     }
 
     @PutMapping(value = "/image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -48,8 +49,10 @@ public class ImageController {
     }
 
     @GetMapping(path = {"/image"}, params = {"name"})
-    public ImageResponse readImageByName(@PathParam("name") String name) throws NotFoundException {
-        return imageService.readImageByName(name);
+    public ImageResponse readImageByName(
+            @RequestParam("name") String name,
+            @RequestParam(name = "bytes", defaultValue = "false") boolean bytes) throws NotFoundException {
+        return imageService.readImageByName(name, bytes);
     }
 
     @GetMapping(path = {"/image/bytes/{id}"})

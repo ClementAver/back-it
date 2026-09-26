@@ -2,10 +2,13 @@ package com.example.demo.services;
 
 import com.example.demo.dtos.ImageRequest;
 import com.example.demo.dtos.ImageResponse;
+import com.example.demo.dtos.ImageResponseWithBytes;
+import com.example.demo.dtos.ImageResponseWithoutBytes;
 import com.example.demo.entities.Image;
 import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repositories.ImageRepository;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,22 +49,9 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public ImageResponse readImage(Integer id) throws NotFoundException {
+    public ImageResponse readImage(Integer id, boolean bytes) throws NotFoundException {
         Optional<Image> imageInDB = imageRepository.findById(id);
-        if (imageInDB.isPresent()) {
-            Image image = imageInDB.get();
-            return new ImageResponse(
-                    image.getId(),
-                    image.getName(),
-                    image.getBytes(),
-                    image.getType(),
-                    image.getAlternateText(),
-                    image.getCreatedAt(),
-                    image.getUpdatedAt()
-            );
-        } else {
-            throw new NotFoundException("Image non référencée.");
-        }
+        return getImageResponse(bytes, imageInDB);
     }
 
     @Override
@@ -91,19 +81,35 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public ImageResponse readImageByName(String name) throws NotFoundException {
+    public ImageResponse readImageByName(String name,  boolean bytes) throws NotFoundException {
         Optional<Image> imageInDB = imageRepository.findByName(name);
+        return getImageResponse(bytes, imageInDB);
+    }
+
+    @NonNull
+    private ImageResponse getImageResponse(boolean bytes, Optional<Image> imageInDB) throws NotFoundException {
         if (imageInDB.isPresent()) {
             Image image = imageInDB.get();
-            return new ImageResponse(
-                    image.getId(),
-                    image.getName(),
-                    image.getBytes(),
-                    image.getType(),
-                    image.getAlternateText(),
-                    image.getCreatedAt(),
-                    image.getUpdatedAt()
-            );
+            if (bytes == true) {
+                return new ImageResponseWithBytes(
+                        image.getId(),
+                        image.getName(),
+                        image.getBytes(),
+                        image.getType(),
+                        image.getAlternateText(),
+                        image.getCreatedAt(),
+                        image.getUpdatedAt()
+                );
+            } else {
+                return new ImageResponseWithoutBytes(
+                        image.getId(),
+                        image.getName(),
+                        image.getType(),
+                        image.getAlternateText(),
+                        image.getCreatedAt(),
+                        image.getUpdatedAt()
+                );
+            }
         } else {
             throw new NotFoundException("Image non référencée.");
         }
