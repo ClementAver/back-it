@@ -62,6 +62,9 @@ public class BoardService implements BoardInterface{
             if (boardRequest.getTitle() != null) {
                 board.setTitle(boardRequest.getTitle());
             }
+            if (boardRequest.getPosition() != null) {
+                board.setPosition(boardRequest.getPosition());
+            }
             boardRepository.save(board);
             return new BoardResponse(
                     board.getId(),
