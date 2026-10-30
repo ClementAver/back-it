@@ -7,6 +7,7 @@ import com.example.demo.exceptions.NotFoundException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface ImageInterface {
     Integer createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException;
@@ -15,4 +16,6 @@ public interface ImageInterface {
     Integer deleteImage(Integer id) throws NotFoundException;
     ImageResponse readImageByName(String name,  boolean bytes) throws NotFoundException;
     byte[] readImageBytes(Integer id) throws NotFoundException;
+    List<ImageResponse> readImages(boolean bytes, int start, int size);
+    long countImages();
 }

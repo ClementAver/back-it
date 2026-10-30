@@ -2,11 +2,8 @@ package com.example.demo.services;
 
 import com.example.demo.dtos.BoardRequest;
 import com.example.demo.dtos.BoardResponse;
-import com.example.demo.exceptions.AlreadyExistException;
-import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface BoardInterface {

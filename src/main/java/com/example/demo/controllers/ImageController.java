@@ -12,8 +12,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -59,5 +63,24 @@ public class ImageController {
     public ResponseEntity<byte[]> readImageBytes(@PathVariable Integer id) throws NotFoundException {
         byte[] imageData = imageService.readImageBytes(id);
         return new ResponseEntity<>(imageData, HttpStatus.OK);
+    }
+
+    @GetMapping("/image")
+    public Map<String, Object> readImages(
+            @RequestParam(name = "bytes", defaultValue = "false") boolean bytes,
+            @RequestParam(name = "start", defaultValue = "0") int start,
+            @RequestParam(name = "size", defaultValue = "9") int size
+    ) {
+        if (start % size != 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "start must be a multiple of size");
+        }
+        List<ImageResponse> imageList = imageService.readImages(bytes, start, size);
+        long total = imageService.countImages();
+        Map<String, Object> response = new HashMap<>();
+        response.put("images", imageList);
+        response.put("total", total);
+        response.put("start", start);
+        response.put("size", size);
+        return response;
     }
 }

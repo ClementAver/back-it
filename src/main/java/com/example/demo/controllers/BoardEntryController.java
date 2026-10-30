@@ -44,7 +44,8 @@ public class BoardEntryController {
 
     @DeleteMapping("/board_entry/{id}")
     public Integer deleteBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
-        return boardEntryService.deleteBoardEntry(id);
+        return id;
+        // return boardEntryService.deleteBoardEntry(id);
     }
 
     @GetMapping("/board_entry")

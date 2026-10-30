@@ -7,21 +7,31 @@ import com.example.demo.dtos.ImageResponseWithoutBytes;
 import com.example.demo.entities.Image;
 import com.example.demo.exceptions.FormatNotSupportedException;
 import com.example.demo.exceptions.NotFoundException;
+import com.example.demo.mappers.ImageWithBytesDTOMapper;
+import com.example.demo.mappers.ImageWithoutBytesDTOMapper;
 import com.example.demo.repositories.ImageRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ImageService implements ImageInterface {
 
     private final ImageRepository imageRepository;
+    private final ImageWithoutBytesDTOMapper imageWithoutBytesDTOMapper;
+    private final ImageWithBytesDTOMapper imageWithBytesDTOMapper;
 
-    public ImageService(ImageRepository imageRepository) {
+    public ImageService(ImageRepository imageRepository, ImageWithoutBytesDTOMapper imageWithoutBytesDTOMapper, ImageWithBytesDTOMapper imageWithBytesDTOMapper) {
         this.imageRepository = imageRepository;
+        this.imageWithoutBytesDTOMapper = imageWithoutBytesDTOMapper;
+        this.imageWithBytesDTOMapper = imageWithBytesDTOMapper;
     }
 
     @Override
@@ -155,5 +165,20 @@ public class ImageService implements ImageInterface {
             throw new NotFoundException("Image non référencée.");
         }
         return imageBytes;
+    }
+
+    @Override
+    public List<ImageResponse> readImages(boolean bytes, int start, int size) {
+        Pageable pageable = PageRequest.of(start / size, size, Sort.by("id"));
+        if (bytes == true) {
+            return imageRepository.findAll(pageable).map(imageWithBytesDTOMapper).getContent();
+        } else {
+            return imageRepository.findAll(pageable).map(imageWithoutBytesDTOMapper).getContent();
+        }
+    }
+
+    @Override
+    public long countImages() {
+        return imageRepository.count();
     }
 }

@@ -15,6 +15,7 @@ public class BoardDTOMapper implements Function<Board, BoardResponse> {
                 board.getTitle(),
                 board.getPosition(),
                 board.getCreatedAt(),
-                board.getUpdatedAt());
+                board.getUpdatedAt()
+        );
     }
 }
