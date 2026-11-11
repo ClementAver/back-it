@@ -35,7 +35,7 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public Integer createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException {
+    public ImageResponse createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException {
         String imageFileName = file.getOriginalFilename();
         assert imageFileName != null;
         String extension = imageFileName.substring(imageFileName.lastIndexOf(".") + 1);
@@ -51,7 +51,15 @@ public class ImageService implements ImageInterface {
                     .alternateText(alternateText)
                     .build();
             imageRepository.save(image);
-            return image.getId();
+            return new ImageResponseWithBytes(
+                    image.getId(),
+                    image.getName(),
+                    image.getBytes(),
+                    image.getType(),
+                    image.getAlternateText(),
+                    image.getCreatedAt(),
+                    image.getUpdatedAt()
+            );
         } else {
             throw new FileAlreadyExistsException("Une image porte déjà ce nom.");
         }
@@ -94,7 +102,7 @@ public class ImageService implements ImageInterface {
     }
 
     @Override
-    public Integer updateImage(Integer id, ImageRequest imageRequest) throws NotFoundException {
+    public ImageResponse updateImage(Integer id, ImageRequest imageRequest) throws NotFoundException {
         Optional<Image> imageInDB = imageRepository.findById(id);
         if (imageInDB.isPresent()) {
             Image image = imageInDB.get();
@@ -102,7 +110,15 @@ public class ImageService implements ImageInterface {
                 image.setAlternateText(imageRequest.getAlternateText());
             }
             imageRepository.save(image);
-            return image.getId();
+            return new ImageResponseWithBytes(
+                    image.getId(),
+                    image.getName(),
+                    image.getBytes(),
+                    image.getType(),
+                    image.getAlternateText(),
+                    image.getCreatedAt(),
+                    image.getUpdatedAt()
+            );
         } else {
             throw new NotFoundException("Image non référencée.");
         }

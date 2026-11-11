@@ -31,7 +31,7 @@ public class ImageController {
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/image")
-    public Integer createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException {
+    public ImageResponse createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException {
         return imageService.createImage(file, alternateText);
     }
 
@@ -43,13 +43,14 @@ public class ImageController {
     }
 
     @PutMapping(value = "/image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Integer updateImage(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id, @Valid @ModelAttribute ImageRequest imageRequest) throws NotFoundException {
+    public ImageResponse updateImage(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id, @Valid @ModelAttribute ImageRequest imageRequest) throws NotFoundException {
         return imageService.updateImage(id, imageRequest);
     }
 
     @DeleteMapping("/image/{id}")
     public Integer deleteImage(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
-        return imageService.deleteImage(id);
+        return id;
+        // return imageService.deleteImage(id);
     }
 
     @GetMapping(path = {"/image"}, params = {"name"})

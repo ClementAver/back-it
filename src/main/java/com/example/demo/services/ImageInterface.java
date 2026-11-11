@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ImageInterface {
-    Integer createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException;
+    ImageResponse createImage(MultipartFile file, String alternateText) throws IOException, FormatNotSupportedException;
     ImageResponse readImage(Integer id, boolean bytes) throws NotFoundException;
-    Integer updateImage(Integer id, ImageRequest imageRequest) throws NotFoundException;
+    ImageResponse updateImage(Integer id, ImageRequest imageRequest) throws NotFoundException;
     Integer deleteImage(Integer id) throws NotFoundException;
     ImageResponse readImageByName(String name,  boolean bytes) throws NotFoundException;
     byte[] readImageBytes(Integer id) throws NotFoundException;
