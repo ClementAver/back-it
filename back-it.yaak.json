@@ -1,0 +1,1198 @@
+{
+  "yaakVersion": "2026.9.1",
+  "yaakSchema": 4,
+  "timestamp": "2026-11-14T16:35:23.592287900",
+  "resources": {
+    "workspaces": [
+      {
+        "model": "workspace",
+        "id": "wk_89CkS9yMk3",
+        "createdAt": "2025-12-14T18:49:33.035763300",
+        "updatedAt": "2025-12-14T18:49:33.035763600",
+        "authentication": {},
+        "authenticationType": null,
+        "description": "",
+        "headers": [],
+        "name": "Yaak",
+        "encryptionKeyChallenge": null,
+        "settingValidateCertificates": true,
+        "settingFollowRedirects": true,
+        "settingRequestTimeout": 0,
+        "settingRequestMessageSize": 67108864,
+        "settingDnsOverrides": [],
+        "settingSendCookies": true,
+        "settingStoreCookies": true,
+        "settingHttpVersion": "auto"
+      }
+    ],
+    "environments": [],
+    "folders": [
+      {
+        "model": "folder",
+        "id": "fl_GntxFKq6TB",
+        "createdAt": "2026-11-11T05:39:26.392429600",
+        "updatedAt": "2026-11-11T05:40:13.177112500",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": null,
+        "authentication": {},
+        "authenticationType": null,
+        "description": "",
+        "headers": [],
+        "name": "back-it",
+        "sortPriority": 1000.0,
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingRequestMessageSize": {
+          "enabled": false,
+          "value": 67108864
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "folder",
+        "id": "fl_xn6BjUhQow",
+        "createdAt": "2026-09-11T14:07:39.218005900",
+        "updatedAt": "2026-11-11T05:39:58.911525300",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_GntxFKq6TB",
+        "authentication": {},
+        "authenticationType": null,
+        "description": "",
+        "headers": [],
+        "name": "board",
+        "sortPriority": 37.03703703703703,
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingRequestMessageSize": {
+          "enabled": false,
+          "value": 67108864
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "folder",
+        "id": "fl_rE7DKVHLCk",
+        "createdAt": "2026-09-11T13:57:20.868486400",
+        "updatedAt": "2026-11-14T13:42:20.884279600",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_GntxFKq6TB",
+        "authentication": {},
+        "authenticationType": null,
+        "description": "",
+        "headers": [],
+        "name": "board entry",
+        "sortPriority": 111.1111111111111,
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingRequestMessageSize": {
+          "enabled": false,
+          "value": 67108864
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "folder",
+        "id": "fl_HW8F55uT8h",
+        "createdAt": "2026-09-10T16:28:36.001213500",
+        "updatedAt": "2026-11-11T05:39:45.777253900",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_GntxFKq6TB",
+        "authentication": {},
+        "authenticationType": null,
+        "description": "",
+        "headers": [],
+        "name": "image",
+        "sortPriority": 555.5555555555555,
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingRequestMessageSize": {
+          "enabled": false,
+          "value": 67108864
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      }
+    ],
+    "httpRequests": [
+      {
+        "model": "http_request",
+        "id": "rq_xdiGmdMzAn",
+        "createdAt": "2026-11-14T13:20:27.968934100",
+        "updatedAt": "2026-11-14T13:30:13.422049300",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_HW8F55uT8h",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "readBytes",
+        "sortPriority": 1000.002,
+        "url": "http://localhost:3001/api/image/bytes/1",
+        "urlParameters": [
+          {
+            "enabled": true,
+            "name": "",
+            "value": "",
+            "id": "Bq4DFkiqPV"
+          }
+        ],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_VjiPwFZ4xc",
+        "createdAt": "2026-11-14T13:16:41.200910100",
+        "updatedAt": "2026-11-14T13:19:49.965321500",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_HW8F55uT8h",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "readByName",
+        "sortPriority": 1000.001,
+        "url": "http://localhost:3001/api/image",
+        "urlParameters": [
+          {
+            "enabled": true,
+            "name": "name",
+            "value": "",
+            "id": "U4wrI2fgRE"
+          },
+          {
+            "enabled": false,
+            "name": "bytes",
+            "value": "true",
+            "id": "XxtpDgrf2H"
+          },
+          {
+            "enabled": true,
+            "name": "",
+            "value": "",
+            "id": "Rhuj7BYacK"
+          }
+        ],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_RZTEqh3fEm",
+        "createdAt": "2026-10-30T17:50:21.130281600",
+        "updatedAt": "2026-11-14T13:38:54.524469300",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_HW8F55uT8h",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "read all",
+        "sortPriority": 4000.0,
+        "url": "http://localhost:3001/api/image",
+        "urlParameters": [
+          {
+            "enabled": false,
+            "name": "bytes",
+            "value": "true",
+            "id": "XxtpDgrf2H"
+          },
+          {
+            "enabled": true,
+            "name": "start",
+            "value": "0",
+            "id": "nt97qS7acv"
+          },
+          {
+            "enabled": true,
+            "name": "size",
+            "value": "9",
+            "id": "h3F7uEPxNg"
+          },
+          {
+            "enabled": true,
+            "name": "",
+            "value": "",
+            "id": "7KA0yXjNe9"
+          }
+        ],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_7UQ3kqubKg",
+        "createdAt": "2026-09-11T15:55:35.654701900",
+        "updatedAt": "2026-11-11T05:39:57.301620700",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_rE7DKVHLCk",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "read all for board",
+        "sortPriority": 4000.0,
+        "url": "http://localhost:3001/api/board_entry",
+        "urlParameters": [
+          {
+            "enabled": true,
+            "name": "board_id",
+            "value": "1",
+            "id": "f07mwPwPKj"
+          },
+          {
+            "enabled": true,
+            "name": "",
+            "value": "",
+            "id": "gnBJYD9jE2"
+          }
+        ],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_eH3cXUypm7",
+        "createdAt": "2026-09-11T14:17:55.649458900",
+        "updatedAt": "2026-11-14T13:38:34.651190600",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_xn6BjUhQow",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "read all",
+        "sortPriority": 4000.0,
+        "url": "http://localhost:3001/api/board",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_wpJfE7aZCU",
+        "createdAt": "2026-09-11T14:07:39.218743200",
+        "updatedAt": "2026-09-25T13:12:17.985316100",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_xn6BjUhQow",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {
+          "form": [
+            {
+              "enabled": true,
+              "id": "32Au3IrHkC",
+              "name": "title",
+              "value": "Felis catus · Chat domestique"
+            },
+            {
+              "enabled": true,
+              "id": "nNDEar5YHN",
+              "name": "position",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "ubBuSEVSpz",
+              "name": "",
+              "value": ""
+            }
+          ]
+        },
+        "bodyType": "multipart/form-data",
+        "description": "",
+        "headers": [
+          {
+            "enabled": true,
+            "name": "Content-Type",
+            "value": "multipart/form-data",
+            "id": "7jT3XeYAzY"
+          }
+        ],
+        "method": "POST",
+        "name": "create",
+        "sortPriority": 0.0,
+        "url": "http://localhost:3001/api/board",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_ZMCadnaEFm",
+        "createdAt": "2026-09-11T14:07:39.218637200",
+        "updatedAt": "2026-09-11T14:18:08.191177700",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_xn6BjUhQow",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "read",
+        "sortPriority": 1000.0,
+        "url": "http://localhost:3001/api/board/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_sN9bYnpQSH",
+        "createdAt": "2026-09-11T14:07:39.218515700",
+        "updatedAt": "2026-10-01T23:40:56.138425",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_xn6BjUhQow",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {
+          "form": [
+            {
+              "enabled": true,
+              "id": "EzuZFMWSPC",
+              "name": "title",
+              "value": "Les chats, quoi"
+            },
+            {
+              "enabled": true,
+              "id": "qmz5r0gn26",
+              "name": "position",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "pUfr4pvcjM",
+              "name": "",
+              "value": ""
+            }
+          ]
+        },
+        "bodyType": "multipart/form-data",
+        "description": "",
+        "headers": [
+          {
+            "enabled": true,
+            "name": "Content-Type",
+            "value": "multipart/form-data",
+            "id": "a5GxMfV70N"
+          }
+        ],
+        "method": "PUT",
+        "name": "update",
+        "sortPriority": 2000.0,
+        "url": "http://localhost:3001/api/board/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_jrvqLNJ8TP",
+        "createdAt": "2026-09-11T14:07:39.218320800",
+        "updatedAt": "2026-09-11T14:18:08.191291800",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_xn6BjUhQow",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "DELETE",
+        "name": "delete",
+        "sortPriority": 3000.0,
+        "url": "http://localhost:3001/api/board/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_3zyMKHciCr",
+        "createdAt": "2026-09-11T14:05:13.271166200",
+        "updatedAt": "2026-11-11T05:39:57.300882300",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_rE7DKVHLCk",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {
+          "form": [
+            {
+              "enabled": true,
+              "id": "32Au3IrHkC",
+              "name": "caption",
+              "value": "Toujours un chat"
+            },
+            {
+              "enabled": true,
+              "id": "0MjxaeszSt",
+              "name": "position",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "zMMe8UyfGS",
+              "name": "boardId",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "HbChAa0MKr",
+              "name": "imageId",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "jJsu6a9XSS",
+              "name": "",
+              "value": ""
+            }
+          ]
+        },
+        "bodyType": "multipart/form-data",
+        "description": "",
+        "headers": [
+          {
+            "enabled": true,
+            "name": "Content-Type",
+            "value": "multipart/form-data",
+            "id": "7jT3XeYAzY"
+          }
+        ],
+        "method": "PUT",
+        "name": "update",
+        "sortPriority": 2000.0,
+        "url": "http://localhost:3001/api/board_entry/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_hXcnwgpqsV",
+        "createdAt": "2026-09-11T14:02:20.756333900",
+        "updatedAt": "2026-11-11T05:39:57.299172900",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_rE7DKVHLCk",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {
+          "form": [
+            {
+              "enabled": true,
+              "id": "32Au3IrHkC",
+              "name": "caption",
+              "value": "Un chat"
+            },
+            {
+              "enabled": true,
+              "id": "0MjxaeszSt",
+              "name": "position",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "zMMe8UyfGS",
+              "name": "boardId",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "HbChAa0MKr",
+              "name": "imageId",
+              "value": "1"
+            },
+            {
+              "enabled": true,
+              "id": "09zhfDzpep",
+              "name": "",
+              "value": ""
+            }
+          ]
+        },
+        "bodyType": "multipart/form-data",
+        "description": "",
+        "headers": [
+          {
+            "enabled": true,
+            "name": "Content-Type",
+            "value": "multipart/form-data",
+            "id": "7jT3XeYAzY"
+          }
+        ],
+        "method": "POST",
+        "name": "create",
+        "sortPriority": 0.0,
+        "url": "http://localhost:3001/api/board_entry",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_m8tnJcAqjU",
+        "createdAt": "2026-09-11T14:01:47.533969900",
+        "updatedAt": "2026-11-11T05:39:57.300499200",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_rE7DKVHLCk",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "read",
+        "sortPriority": 1000.0,
+        "url": "http://localhost:3001/api/board_entry/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_hR5rQvhCDW",
+        "createdAt": "2026-09-11T14:00:55.692990100",
+        "updatedAt": "2026-11-11T05:39:57.300172",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_rE7DKVHLCk",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "DELETE",
+        "name": "delete",
+        "sortPriority": 3000.0,
+        "url": "http://localhost:3001/api/board_entry/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_CxyviVJnv9",
+        "createdAt": "2026-09-10T16:35:02.414130300",
+        "updatedAt": "2026-11-14T13:12:46.024650100",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_HW8F55uT8h",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "DELETE",
+        "name": "delete",
+        "sortPriority": 3000.0,
+        "url": "http://localhost:3001/api/image/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_Ri46X4C3wZ",
+        "createdAt": "2026-09-10T16:31:00.578876100",
+        "updatedAt": "2026-11-14T13:12:46.024335500",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_HW8F55uT8h",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {
+          "form": [
+            {
+              "enabled": true,
+              "id": "EzuZFMWSPC",
+              "name": "alternateText",
+              "value": "Les dés du cochon."
+            },
+            {
+              "enabled": true,
+              "id": "NkGGqN0mWB",
+              "name": "",
+              "value": ""
+            }
+          ]
+        },
+        "bodyType": "multipart/form-data",
+        "description": "",
+        "headers": [
+          {
+            "enabled": true,
+            "name": "Content-Type",
+            "value": "multipart/form-data",
+            "id": "a5GxMfV70N"
+          }
+        ],
+        "method": "PUT",
+        "name": "update",
+        "sortPriority": 2000.0,
+        "url": "http://localhost:3001/api/image/1",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_P72XQMcz27",
+        "createdAt": "2026-09-10T16:28:00.847300400",
+        "updatedAt": "2026-11-14T13:12:46.025521900",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_HW8F55uT8h",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {},
+        "bodyType": null,
+        "description": "",
+        "headers": [],
+        "method": "GET",
+        "name": "read",
+        "sortPriority": 1000.0,
+        "url": "http://localhost:3001/api/image/1",
+        "urlParameters": [
+          {
+            "enabled": false,
+            "name": "bytes",
+            "value": "true",
+            "id": "XxtpDgrf2H"
+          },
+          {
+            "enabled": true,
+            "name": "",
+            "value": "",
+            "id": "ThTQWa4zbA"
+          }
+        ],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      },
+      {
+        "model": "http_request",
+        "id": "rq_SgCSik8LYD",
+        "createdAt": "2026-09-10T15:41:35.010962100",
+        "updatedAt": "2026-11-14T13:12:46.021583500",
+        "workspaceId": "wk_89CkS9yMk3",
+        "folderId": "fl_HW8F55uT8h",
+        "authentication": {},
+        "authenticationType": null,
+        "body": {
+          "form": [
+            {
+              "enabled": true,
+              "file": "C:\\Users\\cleme\\Downloads\\PNG_transparency_demonstration_1.png",
+              "id": "32Au3IrHkC",
+              "name": "file"
+            },
+            {
+              "enabled": true,
+              "id": "0MjxaeszSt",
+              "name": "alternateText",
+              "value": "Dés de couleur sur fond transparent."
+            },
+            {
+              "enabled": true,
+              "id": "uyM4MDPCvD",
+              "name": "",
+              "value": ""
+            }
+          ]
+        },
+        "bodyType": "multipart/form-data",
+        "description": "",
+        "headers": [
+          {
+            "enabled": true,
+            "name": "Content-Type",
+            "value": "multipart/form-data",
+            "id": "7jT3XeYAzY"
+          }
+        ],
+        "method": "POST",
+        "name": "create",
+        "sortPriority": 0.0,
+        "url": "http://localhost:3001/api/image",
+        "urlParameters": [],
+        "settingSendCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingStoreCookies": {
+          "enabled": false,
+          "value": true
+        },
+        "settingValidateCertificates": {
+          "enabled": false,
+          "value": true
+        },
+        "settingFollowRedirects": {
+          "enabled": false,
+          "value": true
+        },
+        "settingRequestTimeout": {
+          "enabled": false,
+          "value": 0
+        },
+        "settingHttpVersion": {
+          "enabled": false,
+          "value": "auto"
+        }
+      }
+    ],
+    "grpcRequests": [],
+    "websocketRequests": []
+  }
+}
