@@ -12,6 +12,7 @@ import com.example.demo.repositories.BoardRepository;
 import com.example.demo.repositories.ImageRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -118,6 +119,15 @@ public class BoardEntryService implements BoardEntryInterface {
     @Override
     public List<BoardEntryResponse> readBoardEntries(Integer id) {
         return boardEntryRepository.findAllByBoardId_Id(id).stream().map(boardEntryDTOMapper).toList();
+    }
+
+    @Override
+    public List<BoardEntryResponse> createBoardEntries(List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
+        List<BoardEntryResponse> responses = new ArrayList<>();
+        for (BoardEntryRequest request : boardEntryRequests) {
+            responses.add(createBoardEntry(request));
+        }
+        return responses;
     }
 }
 
