@@ -59,8 +59,8 @@ public class BoardEntryController {
     }
 
     @ResponseStatus(value = HttpStatus.CREATED)
-    @PostMapping(value = "/board_entry", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<BoardEntryResponse> createBoardEntries(@Valid @ModelAttribute List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
+    @PostMapping(value = "/board_entry/list", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<BoardEntryResponse> createBoardEntries(@Valid @RequestBody List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
         return boardEntryService.createBoardEntries(boardEntryRequests);
     }
 }
