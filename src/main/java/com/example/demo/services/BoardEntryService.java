@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Service
 public class BoardEntryService implements BoardEntryInterface {
@@ -84,14 +85,44 @@ public class BoardEntryService implements BoardEntryInterface {
         Optional<BoardEntry> boardEntryInDB = boardEntryRepository.findById(id);
         if (boardEntryInDB.isPresent()) {
             BoardEntry boardEntry = boardEntryInDB.get();
+
+            boolean moved = false;
+
             if (boardEntryRequest.getCaption() != null) {
                 boardEntry.setCaption(boardEntryRequest.getCaption());
             }
-            if (boardEntryRequest.getPosition() != null) {
+
+            if (boardEntryRequest.getPosition() != null && !boardEntry.getPosition().equals(boardEntryRequest.getPosition())) {
+                moved = true;
                 boardEntry.setPosition(boardEntryRequest.getPosition());
             }
 
-            boardEntry = boardEntryRepository.saveAndFlush(boardEntry);
+            if (boardEntryRequest.getBoardId() != null && !boardEntry.getBoardId().getId().equals(boardEntryRequest.getBoardId())) {
+                moved = true;
+                Optional<Board> boardInDB = boardRepository.findById(boardEntryRequest.getBoardId());
+                if (boardInDB.isPresent()) {
+                    Board board = boardInDB.get();
+                    boardEntry.setBoardId(board);
+                } else {
+                    throw new NotFoundException("Tableau non référencé.");
+                }
+            }
+
+            if (!moved) {
+                boardEntryRepository.save(boardEntry);
+            } else {
+                List<BoardEntry> boardEntries = boardEntryRepository.findOthersByBoardId_Id(
+                        boardEntry.getBoardId().getId(),
+                        boardEntry.getId()
+                );
+                boardEntries.add(boardEntry.getPosition() - 1, boardEntry);
+                IntStream.range(0, boardEntries.size())
+                        .forEach(i -> {
+                            BoardEntry it = boardEntries.get(i);
+                            it.setPosition(i + 1);
+                            boardEntryRepository.save(it);
+                        });
+            }
 
             return new BoardEntryResponse(
                     boardEntry.getId(),

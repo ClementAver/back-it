@@ -44,8 +44,7 @@ public class BoardEntryController {
 
     @DeleteMapping("/board_entry/{id}")
     public Integer deleteBoardEntry(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
-        return id;
-        // return boardEntryService.deleteBoardEntry(id);
+         return boardEntryService.deleteBoardEntry(id);
     }
 
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -62,10 +61,5 @@ public class BoardEntryController {
         Map<String, List<BoardEntryResponse>> response = new HashMap<>();
         response.put("boardEntries", boardEntryList);
         return response;
-    }
-
-    @PutMapping(value = "/board_entry/list", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<BoardEntryResponse> updateBoardEntries(@Valid @RequestBody List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
-        return boardEntryService.updateBoardEntries(boardEntryRequests);
     }
 }
