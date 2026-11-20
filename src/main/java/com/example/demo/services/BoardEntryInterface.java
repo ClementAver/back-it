@@ -12,6 +12,7 @@ public interface BoardEntryInterface {
     BoardEntryResponse readBoardEntry(Integer id) throws NotFoundException;
     BoardEntryResponse updateBoardEntry(Integer id, BoardEntryRequest boardEntryRequest) throws NotFoundException;
     Integer deleteBoardEntry(Integer id) throws NotFoundException;
-    List<BoardEntryResponse> readBoardEntries(Integer id);
     List<BoardEntryResponse> createBoardEntries(List<BoardEntryRequest> boardEntryRequests) throws NotFoundException;
+    List<BoardEntryResponse> readBoardEntries(Integer id);
+    List<BoardEntryResponse> updateBoardEntries(List<BoardEntryRequest> boardEntryRequests) throws NotFoundException;
 }

@@ -48,6 +48,12 @@ public class BoardEntryController {
         // return boardEntryService.deleteBoardEntry(id);
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
+    @PostMapping(value = "/board_entry/list", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<BoardEntryResponse> createBoardEntries(@Valid @RequestBody List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
+        return boardEntryService.createBoardEntries(boardEntryRequests);
+    }
+
     @GetMapping("/board_entry")
     public Map<String, List<BoardEntryResponse>> readBoardEntries(
             @RequestParam("board_id")
@@ -58,9 +64,8 @@ public class BoardEntryController {
         return response;
     }
 
-    @ResponseStatus(value = HttpStatus.CREATED)
-    @PostMapping(value = "/board_entry/list", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<BoardEntryResponse> createBoardEntries(@Valid @RequestBody List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
-        return boardEntryService.createBoardEntries(boardEntryRequests);
+    @PutMapping(value = "/board_entry/list", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<BoardEntryResponse> updateBoardEntries(@Valid @RequestBody List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
+        return boardEntryService.updateBoardEntries(boardEntryRequests);
     }
 }

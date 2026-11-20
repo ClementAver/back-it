@@ -90,7 +90,9 @@ public class BoardEntryService implements BoardEntryInterface {
             if (boardEntryRequest.getPosition() != null) {
                 boardEntry.setPosition(boardEntryRequest.getPosition());
             }
-            boardEntryRepository.save(boardEntry);
+
+            boardEntry = boardEntryRepository.saveAndFlush(boardEntry);
+
             return new BoardEntryResponse(
                     boardEntry.getId(),
                     boardEntry.getCaption(),
@@ -117,15 +119,24 @@ public class BoardEntryService implements BoardEntryInterface {
     }
 
     @Override
+    public List<BoardEntryResponse> createBoardEntries(List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
+        List<BoardEntryResponse> responses = new ArrayList<>();
+        for (BoardEntryRequest request : boardEntryRequests) {
+            responses.add(createBoardEntry(request));
+        }
+        return responses;
+    }
+
+    @Override
     public List<BoardEntryResponse> readBoardEntries(Integer id) {
         return boardEntryRepository.findAllByBoardId_Id(id).stream().map(boardEntryDTOMapper).toList();
     }
 
     @Override
-    public List<BoardEntryResponse> createBoardEntries(List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
+    public List<BoardEntryResponse> updateBoardEntries(List<BoardEntryRequest> boardEntryRequests) throws NotFoundException {
         List<BoardEntryResponse> responses = new ArrayList<>();
         for (BoardEntryRequest request : boardEntryRequests) {
-            responses.add(createBoardEntry(request));
+            responses.add(updateBoardEntry(request.getId(), request));
         }
         return responses;
     }
