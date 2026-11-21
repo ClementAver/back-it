@@ -86,19 +86,20 @@ public class BoardEntryService implements BoardEntryInterface {
         if (boardEntryInDB.isPresent()) {
             BoardEntry boardEntry = boardEntryInDB.get();
 
-            boolean moved = false;
+            boolean movedIn = false;
+            boolean movedOut = false;
 
             if (boardEntryRequest.getCaption() != null) {
                 boardEntry.setCaption(boardEntryRequest.getCaption());
             }
 
             if (boardEntryRequest.getPosition() != null && !boardEntry.getPosition().equals(boardEntryRequest.getPosition())) {
-                moved = true;
+                movedIn = true;
                 boardEntry.setPosition(boardEntryRequest.getPosition());
             }
 
             if (boardEntryRequest.getBoardId() != null && !boardEntry.getBoardId().getId().equals(boardEntryRequest.getBoardId())) {
-                moved = true;
+                movedOut = true;
                 Optional<Board> boardInDB = boardRepository.findById(boardEntryRequest.getBoardId());
                 if (boardInDB.isPresent()) {
                     Board board = boardInDB.get();
@@ -108,9 +109,7 @@ public class BoardEntryService implements BoardEntryInterface {
                 }
             }
 
-            if (!moved) {
-                boardEntryRepository.save(boardEntry);
-            } else {
+            if (movedOut) {
                 List<BoardEntry> boardEntries = boardEntryRepository.findOthersByBoardId_Id(
                         boardEntry.getBoardId().getId(),
                         boardEntry.getId()
@@ -121,7 +120,25 @@ public class BoardEntryService implements BoardEntryInterface {
                             BoardEntry it = boardEntries.get(i);
                             it.setPosition(i + 1);
                             boardEntryRepository.save(it);
+                            System.out.println("moved out: " + it.getId());
                         });
+            } else if (movedIn) {
+                boardEntry = boardEntryRepository.saveAndFlush(boardEntry);
+                int nextPosition = boardEntry.getPosition() + 1;
+                List<BoardEntry> nextBoardEntries = boardEntryRepository.findAllNextByBoardId_Id(
+                        boardEntry.getId(),
+                        boardEntry.getBoardId().getId(),
+                        boardEntry.getPosition()
+                );
+                IntStream.range(0, nextBoardEntries.size()).forEach(i -> {
+                    BoardEntry it = nextBoardEntries.get(i);
+                    it.setPosition(nextPosition + i);
+                    boardEntryRepository.save(it);
+                    System.out.println("moved in: " + it.getId());
+                });
+            } else {
+                System.out.println("not moved");
+                boardEntryRepository.save(boardEntry);
             }
 
             return new BoardEntryResponse(

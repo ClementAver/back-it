@@ -23,5 +23,20 @@ public interface BoardEntryRepository extends JpaRepository<BoardEntry, Integer>
             "ORDER BY be.position ASC, be.updatedAt DESC"
     )
     List<BoardEntry> findOthersByBoardId_Id(@Param("boardId") Integer boardId, @Param("id") Integer id);
+    @Query("SELECT new BoardEntry(" +
+            "be.id, " +
+            "be.caption, " +
+            "be.position, " +
+            "be.boardId, " +
+            "be.imageId, " +
+            "be.createdAt, " +
+            "be.updatedAt)" +
+            "FROM BoardEntry be " +
+            "WHERE be.boardId.id = :boardId " +
+            "AND be.id != :id " +
+            "AND be.position >= :position " +
+            "ORDER BY be.position ASC, be.updatedAt DESC"
+    )
+    List<BoardEntry> findAllNextByBoardId_Id(@Param("id") Integer id, @Param("boardId") Integer boardId, @Param("position") Integer position);
 
 }
