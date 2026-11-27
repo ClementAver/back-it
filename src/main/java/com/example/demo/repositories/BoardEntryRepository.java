@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface BoardEntryRepository extends JpaRepository<BoardEntry, Integer> {
     List<BoardEntry> findAllByBoardId_Id(Integer id);
+    void deleteAllByBoardId_Id(Integer id);
     @Query("SELECT new BoardEntry(" +
             "be.id, " +
             "be.caption, " +
