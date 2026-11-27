@@ -49,8 +49,7 @@ public class ImageController {
 
     @DeleteMapping("/image/{id}")
     public Integer deleteImage(@PathVariable @Min(value = 1, message = "L'identifiant doit être égal ou supérieur à un (1).") Integer id) throws NotFoundException {
-        return id;
-        // return imageService.deleteImage(id);
+        return imageService.deleteImage(id);
     }
 
     @GetMapping(path = {"/image"}, params = {"name"})

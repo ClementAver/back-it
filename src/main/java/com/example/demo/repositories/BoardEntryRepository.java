@@ -14,12 +14,12 @@ public interface BoardEntryRepository extends JpaRepository<BoardEntry, Integer>
             "be.id, " +
             "be.caption, " +
             "be.position, " +
-            "be.boardId, " +
-            "be.imageId, " +
+            "be.board, " +
+            "be.image, " +
             "be.createdAt, " +
             "be.updatedAt)" +
             "FROM BoardEntry be " +
-            "WHERE be.boardId.id = :boardId " +
+            "WHERE be.board.id = :boardId " +
             "AND be.id != :id " +
             "ORDER BY be.position ASC, be.updatedAt DESC"
     )
@@ -28,12 +28,12 @@ public interface BoardEntryRepository extends JpaRepository<BoardEntry, Integer>
             "be.id, " +
             "be.caption, " +
             "be.position, " +
-            "be.boardId, " +
-            "be.imageId, " +
+            "be.board, " +
+            "be.image, " +
             "be.createdAt, " +
             "be.updatedAt)" +
             "FROM BoardEntry be " +
-            "WHERE be.boardId.id = :boardId " +
+            "WHERE be.board.id = :boardId " +
             "AND be.id != :id " +
             "AND be.position >= :position " +
             "ORDER BY be.position ASC, be.updatedAt DESC"

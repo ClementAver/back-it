@@ -37,13 +37,13 @@ public class BoardEntryService implements BoardEntryInterface {
         BoardEntry boardEntry = new BoardEntry();
         Optional<Board> boardInDB = boardRepository.findById(boardEntryRequest.getBoardId());
         if (boardInDB.isPresent()) {
-            boardEntry.setBoardId(boardInDB.get());
+            boardEntry.setBoard(boardInDB.get());
         } else {
             throw new NotFoundException("Tableau non référencé.");
         }
         Optional<Image> imageInDB = imageRepository.findById(boardEntryRequest.getImageId());
         if (imageInDB.isPresent()) {
-            boardEntry.setImageId(imageInDB.get());
+            boardEntry.setImage(imageInDB.get());
         } else {
             throw new NotFoundException("Image non référencée.");
         }
@@ -54,8 +54,8 @@ public class BoardEntryService implements BoardEntryInterface {
           boardEntry.getId(),
           boardEntry.getCaption(),
           boardEntry.getPosition(),
-          boardEntry.getBoardId().getId(),
-          boardEntry.getImageId().getId(),
+          boardEntry.getBoard().getId(),
+          boardEntry.getImage().getId(),
           boardEntry.getCreatedAt(),
           boardEntry.getUpdatedAt()
         );
@@ -70,8 +70,8 @@ public class BoardEntryService implements BoardEntryInterface {
                     boardEntry.getId(),
                     boardEntry.getCaption(),
                     boardEntry.getPosition(),
-                    boardEntry.getBoardId().getId(),
-                    boardEntry.getImageId().getId(),
+                    boardEntry.getBoard().getId(),
+                    boardEntry.getImage().getId(),
                     boardEntry.getCreatedAt(),
                     boardEntry.getUpdatedAt()
             );
@@ -98,12 +98,12 @@ public class BoardEntryService implements BoardEntryInterface {
                 boardEntry.setPosition(boardEntryRequest.getPosition());
             }
 
-            if (boardEntryRequest.getBoardId() != null && !boardEntry.getBoardId().getId().equals(boardEntryRequest.getBoardId())) {
+            if (boardEntryRequest.getBoardId() != null && !boardEntry.getBoard().getId().equals(boardEntryRequest.getBoardId())) {
                 movedOut = true;
                 Optional<Board> boardInDB = boardRepository.findById(boardEntryRequest.getBoardId());
                 if (boardInDB.isPresent()) {
                     Board board = boardInDB.get();
-                    boardEntry.setBoardId(board);
+                    boardEntry.setBoard(board);
                 } else {
                     throw new NotFoundException("Tableau non référencé.");
                 }
@@ -111,7 +111,7 @@ public class BoardEntryService implements BoardEntryInterface {
 
             if (movedOut) {
                 List<BoardEntry> boardEntries = boardEntryRepository.findOthersByBoardId_Id(
-                        boardEntry.getBoardId().getId(),
+                        boardEntry.getBoard().getId(),
                         boardEntry.getId()
                 );
                 boardEntries.add(boardEntry.getPosition() - 1, boardEntry);
@@ -127,7 +127,7 @@ public class BoardEntryService implements BoardEntryInterface {
                 int nextPosition = boardEntry.getPosition() + 1;
                 List<BoardEntry> nextBoardEntries = boardEntryRepository.findAllNextByBoardId_Id(
                         boardEntry.getId(),
-                        boardEntry.getBoardId().getId(),
+                        boardEntry.getBoard().getId(),
                         boardEntry.getPosition()
                 );
                 IntStream.range(0, nextBoardEntries.size()).forEach(i -> {
@@ -145,8 +145,8 @@ public class BoardEntryService implements BoardEntryInterface {
                     boardEntry.getId(),
                     boardEntry.getCaption(),
                     boardEntry.getPosition(),
-                    boardEntry.getBoardId().getId(),
-                    boardEntry.getImageId().getId(),
+                    boardEntry.getBoard().getId(),
+                    boardEntry.getImage().getId(),
                     boardEntry.getCreatedAt(),
                     boardEntry.getUpdatedAt()
             );
